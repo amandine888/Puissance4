@@ -1,0 +1,45 @@
+body{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 50vh;
+    background-color: #f5ceda;
+    color: black;
+    font-family: 'Dosis', sans-serif;
+    cursor: default;
+}
+
+#titre {
+    font-size: 50px;
+    border: blueviolet 4px solid;
+    width: auto;
+}
+
+#lesBoutons {
+    display: flex; 
+    justify-content: space-between;
+    border: cadetblue 4px solid;
+}
+
+#lesBoutons #boutonJeu {
+    border-radius: 8px;
+}
+
+#lesBoutons #boutonRules {
+    border-radius: 8px;
+}
+
+#descriptif{
+    display : none; 
+    font-size: 18px;
+}
+
+section{
+    width: 380px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+}
