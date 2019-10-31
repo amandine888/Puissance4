@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 // Bouton pour rediriger vers la page de jeu :  
  $("#boutonJeu").on("click", function(){
-    window.location="file:///Users/amandinedivay/Documents/Web%20dev/Code/JavaScript/Projets/Puissance4/game.html" 
+    window.location="file:///Users/amandinedivay/Documents/Web%20dev/Projets/Puissance4/game.html" 
 })
 
 

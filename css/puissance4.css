@@ -54,3 +54,7 @@ html {
 #lesBoutons #revenirMenu {
     border-radius: 8px;
 }
+
+.boutonPlayer1 {
+    background-image: url("../img/Jeton.png");
+}
