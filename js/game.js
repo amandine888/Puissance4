@@ -54,6 +54,6 @@ $(document).ready(function() {
 // });
 
 
-const game = new Puissance4 ()
+const game = new Puissance4 (); 
 
 })

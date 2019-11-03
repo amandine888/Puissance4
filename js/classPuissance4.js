@@ -19,6 +19,7 @@ class Puissance4 {
 
 // Le click est dans le constructeur il défini le reste : 
         $("td").click((e)=>this.handleClick(e));
+        $("#boutonRestart").click((e)=>this.click_reset(e)); 
 
     }
  
@@ -48,7 +49,7 @@ class Puissance4 {
 
         this.turn = (this.turn === this.player1) ? this.player2 : this.player1;
 
-        this.check_win(x, y, this.player1);
+        this.check_win(x, y, this.player1, this.player2);
 
     }
 
@@ -68,51 +69,73 @@ class Puissance4 {
         this.count_turn++;
         console.log("countTurn",this.count_turn)
         if(this.count_turn === this.max_turn){
-            if (window.alert("Égalité !")){
-                window.reset; // à changer
-            }
+            if (window.alert("Égalité !")); 
         }
     }
 
-    check_win(column, row, player1, player2) {
+    check_win(row, column, player1, player2) {
 
         // Horizontal pour player 1 : 
         let count = 0;
         for (let j = 0; j < this.grid_dimension.x  ; j++) {
-            count = (this.grid[row][j] == this.player1) ? count + 1 : 0;
+            count = (this.grid[column][j] == this.player1) ? count + 1 : 0;
             if (count >= 4){
                 window.alert("Player1 Win");
             }
         }
 
         // Horizontal pour player 2 : 
-        let count2 = 0;
+        count = 0;
         for (let j = 0; j < this.grid_dimension.x  ; j++) {
-            count2 = (this.grid[row][j] == this.player2) ? count2 + 1 : 0;
-            if (count2 >= 4){
+            count = (this.grid[column][j] == this.player2) ? count + 1 : 0;
+            if (count >= 4){
                 window.alert("Player2 Win");
             }
         
         } 
         
-        // Vertical pour player 1 : 
-        // let countVert = 0;
-        // for (let i = 0; i < this.grid_dimension.y  ; i++) {
-        //     countVert = (this.grid[column][i] == this.player1) ? countVert + 1 : 0;
-        //     if (countVert >= 4){
-        //         window.alert("Player1 Win");
-        //     }
-        // }
+        // Vertical pour player 1 :     
+        count = 0;
+        for (let i = 0; i < this.grid_dimension.y  ; i++) {
+            count = (this.grid[i][row] == this.player1) ? count + 1 : 0;
+            if (count >= 4){
+                window.alert("Player1 Win");
+            }
+        }
+
+        // Vertical pour player 2 :     
+        count = 0;
+        for (let i = 0; i < this.grid_dimension.y  ; i++) {
+            count = (this.grid[i][row] == this.player2) ? count + 1 : 0;
+            if (count >= 4){
+                window.alert("Player2 Win");
+            }
+        }
       
-        // Diagonal
+        // Diagonal pour player 1: 
+
+        count = 0;
+        let shift = row - column;
+        for (let i = Math.max(shift, 0); i < Math.min(this.row, this.column + shift); i++) {
+          count = (this.grid[i][i - shift] == this.player1) ? count+1 : 0;
+            if (count >= 4) return true;
+            console.log(count);
+        }
         
         // Anti-diagonal
     } 
     
 
+    
+    // click_reset (e){
+    //     for(let i = 0; i< this.grid_dimension.x; i++){
+    //         for(let j = 0; j<this.grid_dimension.y; j++){
+    //             this.grid_dimension[j][i] = 0; 
+    //         }
+    //     }
+    // }
 
-
-
+    
  //cibler et placer jeton sur img, mettre condition pour changer jeton en fonction du joueur. 
         //alterner joueur courant (this.turn)
         //compter les tours (this.count_turn ++)
