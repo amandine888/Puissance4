@@ -47,9 +47,10 @@ class Puissance4 {
 
         this.add_token(y,x);
 
-        this.turn = (this.turn === this.player1) ? this.player2 : this.player1;
+        this.turn = (this.turn === this.player1) ? this.player2 : this.player1; 
 
-        this.check_win(x, y, this.player1, this.player2);
+        console.log(this.check_win(x, y, this.player1, this.player2));
+
 
     }
 
@@ -73,59 +74,101 @@ class Puissance4 {
         }
     }
 
-    check_win(row, column, player1, player2) {
+    check_win(y, x, player1, player2) { //On peut mettre le check win dans le add jeton. 
 
         // Horizontal pour player 1 : 
         let count = 0;
-        for (let j = 0; j < this.grid_dimension.x  ; j++) {
-            count = (this.grid[column][j] == this.player1) ? count + 1 : 0;
+        for (let l = 0; l < this.grid_dimension.x  ; l++) {
+            count = (this.grid[x][l] == player1) ? count + 1 : 0; //ternaire, comme une condition mais écrite différement
             if (count >= 4){
                 window.alert("Player1 Win");
+                return true;
             }
         }
 
         // Horizontal pour player 2 : 
         count = 0;
-        for (let j = 0; j < this.grid_dimension.x  ; j++) {
-            count = (this.grid[column][j] == this.player2) ? count + 1 : 0;
+        for (let l = 0; l < this.grid_dimension.x  ; l++) {
+            count = (this.grid[x][l] == player2) ? count + 1 : 0;
             if (count >= 4){
                 window.alert("Player2 Win");
+                return true;
             }
         
         } 
         
         // Vertical pour player 1 :     
         count = 0;
-        for (let i = 0; i < this.grid_dimension.y  ; i++) {
-            count = (this.grid[i][row] == this.player1) ? count + 1 : 0;
+        for (let h = 0; h < this.grid_dimension.y  ; h++) {
+            count = (this.grid[h][y] == player1) ? count + 1 : 0;
             if (count >= 4){
                 window.alert("Player1 Win");
+                return true;
             }
         }
 
         // Vertical pour player 2 :     
         count = 0;
-        for (let i = 0; i < this.grid_dimension.y  ; i++) {
-            count = (this.grid[i][row] == this.player2) ? count + 1 : 0;
+        for (let h = 0; h < this.grid_dimension.y  ; h++) {
+            count = (this.grid[h][y] == player2) ? count + 1 : 0;
             if (count >= 4){
                 window.alert("Player2 Win");
+                return true;
             }
         }
       
         // Diagonal pour player 1: 
 
         count = 0;
-        let shift = row - column;
-        for (let i = Math.max(shift, 0); i < Math.min(this.row, this.column + shift); i++) {
-          count = (this.grid[i][i - shift] == this.player1) ? count+1 : 0;
-            if (count >= 4) return true;
-            console.log(count);
+        var shift = x - y;
+        for (let d = Math.max(shift, 0); d < Math.min(this.grid_dimension.y, this.grid_dimension.x + shift); d++) {
+          count = (this.grid[d][d - shift] == player1) ? count + 1 : 0;
+          console.log("count diago", count)
+            if (count >= 4){
+                window.alert("Player1 Win");
+                return true;}
         }
-        
-        // Anti-diagonal
-    } 
+
+        // Diagonal pour player 2: 
+
+        count = 0;
+        var shift = x - y;
+        for (let d = Math.max(shift, 0); d < Math.min(this.grid_dimension.y, this.grid_dimension.x + shift); d++) {
+          count = (this.grid[d][d - shift] == player2) ? count + 1 : 0;
+          console.log("count diago", count)
+            if (count >= 4){
+                window.alert("Player2 Win");
+                return true;}
+        }
     
 
+        // Anti-diagonal pour player 1:
+
+        count = 0;
+        var shiftSecond = x + y;
+        for (let i = Math.max(shiftSecond - this.grid_dimension.y + 1, 0); i < Math.min(this.grid_dimension.x, shiftSecond + 1); i++) {
+          count = (this.grid[i][shiftSecond - i] == player1) ? count + 1 : 0;
+          console.log("count antidiago", count)
+          if (count >= 4){
+            window.alert("Player1 Win");
+            return true;}
+    
+        }
+
+        // Anti-diagonal pour player 2:
+
+        count = 0;
+        var shiftSecond = x + y;
+        for (let i = Math.max(shiftSecond - this.grid_dimension.y + 1, 0); i < Math.min(this.grid_dimension.x, shiftSecond + 1); i++) {
+          count = (this.grid[i][shiftSecond - i] == player2) ? count + 1 : 0;
+          console.log("count antidiago", count)
+          if (count >= 4){
+            window.alert("Player2 Win");
+            return true;}
+    
+        }
+    }
+    
     
     // click_reset (e){
     //     for(let i = 0; i< this.grid_dimension.x; i++){
