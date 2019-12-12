@@ -14,14 +14,12 @@ body{
 
 #titre {
     font-size: 50px;
-    border: blueviolet 4px solid;
     width: auto;
 }
 
 #lesBoutons {
     display: flex; 
     justify-content: space-between;
-    border: cadetblue 4px solid;
 }
 
 #lesBoutons #boutonJeu {

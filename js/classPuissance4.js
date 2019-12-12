@@ -15,14 +15,12 @@ class Puissance4 {
 
 // Générer ma grille grâce à la méthode en dehors du constructor :  
         this.generate_grid();
-       
 
 // Le click est dans le constructeur il défini le reste : 
         $("td").click((e)=>this.handleClick(e));
         $("#boutonRestart").click((e)=>this.click_reset(e)); 
+}
 
-    }
- 
 // Méthodes :  
     generate_grid(){
         for (let h = 0; h<this.grid_dimension.y; h++){
@@ -50,16 +48,14 @@ class Puissance4 {
         this.turn = (this.turn === this.player1) ? this.player2 : this.player1; 
 
         console.log(this.check_win(x, y, this.player1, this.player2));
-
-
     }
 
     check_last_index(x){
-       for(let h = this.grid_dimension.y - 1; h>=0; h--){
-           if (this.grid[h][x]===0){
-              return h;
+        for(let h = this.grid_dimension.y - 1; h>=0; h--){
+            if (this.grid[h][x]===0){
+                return h;
             }
-       }
+        }
     }
     
     add_token(y,x) {
@@ -82,6 +78,7 @@ class Puissance4 {
             count = (this.grid[x][l] == player1) ? count + 1 : 0; //ternaire, comme une condition mais écrite différement
             if (count >= 4){
                 window.alert("Player1 Win");
+                this.winner = true;
                 return true;
             }
         }
@@ -116,14 +113,13 @@ class Puissance4 {
                 return true;
             }
         }
-      
         // Diagonal pour player 1: 
 
         count = 0;
         var shift = x - y;
         for (let d = Math.max(shift, 0); d < Math.min(this.grid_dimension.y, this.grid_dimension.x + shift); d++) {
-          count = (this.grid[d][d - shift] == player1) ? count + 1 : 0;
-          console.log("count diago", count)
+            count = (this.grid[d][d - shift] == player1) ? count + 1 : 0;
+            console.log("count diago", count)
             if (count >= 4){
                 window.alert("Player1 Win");
                 return true;}
@@ -134,8 +130,8 @@ class Puissance4 {
         count = 0;
         var shift = x - y;
         for (let d = Math.max(shift, 0); d < Math.min(this.grid_dimension.y, this.grid_dimension.x + shift); d++) {
-          count = (this.grid[d][d - shift] == player2) ? count + 1 : 0;
-          console.log("count diago", count)
+            count = (this.grid[d][d - shift] == player2) ? count + 1 : 0;
+            console.log("count diago", count)
             if (count >= 4){
                 window.alert("Player2 Win");
                 return true;}
@@ -145,11 +141,11 @@ class Puissance4 {
         // Anti-diagonal pour player 1:
 
         count = 0;
-        var shiftSecond = x + y;
-        for (let i = Math.max(shiftSecond - this.grid_dimension.y + 1, 0); i < Math.min(this.grid_dimension.x, shiftSecond + 1); i++) {
-          count = (this.grid[i][shiftSecond - i] == player1) ? count + 1 : 0;
-          console.log("count antidiago", count)
-          if (count >= 4){
+        var shiftSecond = y + x;
+        for (let i = Math.max(shiftSecond - this.grid_dimension.x + 1, 0); i < Math.min(this.grid_dimension.y, shiftSecond + 1); i++) {
+            count = (this.grid[i][shiftSecond - i] == player1) ? count + 1 : 0;
+            console.log("count antidiago", count)
+            if (count >= 4){
             window.alert("Player1 Win");
             return true;}
     
@@ -158,33 +154,31 @@ class Puissance4 {
         // Anti-diagonal pour player 2:
 
         count = 0;
-        var shiftSecond = x + y;
-        for (let i = Math.max(shiftSecond - this.grid_dimension.y + 1, 0); i < Math.min(this.grid_dimension.x, shiftSecond + 1); i++) {
-          count = (this.grid[i][shiftSecond - i] == player2) ? count + 1 : 0;
-          console.log("count antidiago", count)
-          if (count >= 4){
+        var shiftSecond = y + x;
+        for (let i = Math.max(shiftSecond - this.grid_dimension.x + 1, 0); i < Math.min(this.grid_dimension.y, shiftSecond + 1); i++) {
+            count = (this.grid[i][shiftSecond - i] == player2) ? count + 1 : 0;
+            console.log("count antidiago", count)
+            if (count >= 4){
             window.alert("Player2 Win");
             return true;}
     
         }
     }
-    
-    
-    // click_reset (e){
-    //     for(let i = 0; i< this.grid_dimension.x; i++){
-    //         for(let j = 0; j<this.grid_dimension.y; j++){
-    //             this.grid_dimension[j][i] = 0; 
-    //         }
-    //     }
-    // }
 
     
- //cibler et placer jeton sur img, mettre condition pour changer jeton en fonction du joueur. 
-        //alterner joueur courant (this.turn)
-        //compter les tours (this.count_turn ++)
-        //update grille 1 ou 2 en fonction du joueur. A partir des coordonnées. 
-
-        //check
-        //regarder si victoire ou pas ou null
-
+    // Reset du jeu au clic sur bouton restart : 
+    click_reset() {
+        
+        for (let h = 0; h < this.grid_dimension.y; h++) {
+            for (let l = 0; l < this.grid_dimension.x; l++) {
+            $("tr:nth-child(" + (h+1) + ") td:nth-child(" + (l+1) + ") img").attr("src", "./img/Grille1.png");
+            $("tr:nth-child(" + (h+1) + ") td:nth-child(" + (l+1) + ") img").attr("src", "./img/Grille1.png") 
+            }
+        } 
+        this.turn = 1;
+        this.count_turn = 0; 
+        this.generate_grid();
+        this.winner = null; 
+    }
+    
 }
