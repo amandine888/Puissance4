@@ -18,6 +18,7 @@ class Puissance4 {
 
 // Le click est dans le constructeur il défini le reste : 
         $("td").click((e)=>this.handleClick(e));
+// Appelle la fonction qui restart la partie : 
         $("#boutonRestart").click((e)=>this.click_reset(e)); 
 }
 
@@ -62,7 +63,7 @@ class Puissance4 {
         if(this.turn === this.player1){
         $("tr:nth-child(" + (y+1) + ") td:nth-child(" + (x+1) + ") img").attr("src", "./img/Ada.png")}
             else {this.player2
-            $("tr:nth-child(" + (y+1) + ") td:nth-child(" + (x+1) + ") img").attr("src", "./img/Hedi.png")}
+            $("tr:nth-child(" + (y+1) + ") td:nth-child(" + (x+1) + ") img").attr("src", "./img/Hedy.png")}
         this.count_turn++;
         console.log("countTurn",this.count_turn)
         if(this.count_turn === this.max_turn){
@@ -164,7 +165,6 @@ class Puissance4 {
     
         }
     }
-
     
     // Reset du jeu au clic sur bouton restart : 
     click_reset() {
