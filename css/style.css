@@ -5,36 +5,12 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     min-height: 50vh;
     background-color: #f5ceda;
     color: black;
     font-family: 'Dosis', sans-serif;
     cursor: default;
-}
-
-#titre {
-    font-size: 50px;
-    border: blueviolet 4px solid;
-    width: auto;
-}
-
-#lesBoutons {
-    display: flex; 
-    justify-content: space-between;
-    border: cadetblue 4px solid;
-}
-
-#lesBoutons #boutonJeu {
-    border-radius: 8px;
-}
-
-#lesBoutons #boutonRules {
-    border-radius: 8px;
-}
-
-#descriptif{
-    display : none; 
-    font-size: 18px;
 }
 
 section{
@@ -43,3 +19,45 @@ section{
     margin: auto;
     text-align: center;
 }
+
+#titre{
+    width: 100%;
+}
+
+h1 {
+    font-size: 8vw;
+}
+
+h2{}
+
+#images{
+    display: flex;
+}
+
+#lesBoutons {
+    display: flex; 
+    justify-content: space-between;
+    margin: 50px;
+}
+
+#lesBoutons input {
+    font-size: 2vw;
+    background-color:  #e9a2b7;
+    padding: 1vw;
+}
+
+#lesBoutons #boutonJeu {
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#lesBoutons #boutonRules {
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#descriptif{
+    display : none; 
+    font-size: 18px;
+}
+
